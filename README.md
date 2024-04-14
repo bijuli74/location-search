@@ -28,3 +28,23 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+---
+## Installation
+
+To create the base template
+
+```sh
+npm create vite location-search -- --template react-ts
+
+cd location-search
+npm intall
+npm run dev
+```
+[Adding Tailwind](https://tailwindcss.com/docs/guide/vite)
+
+Adding Leaflet for Map
+```sh
+npm install @types/leaflet leaflet react-leaflet
+```
+
