@@ -9,6 +9,7 @@ interface LocationSearchProps {
 export default function LocationSearch({ onPlaceClick }: LocationSearchProps) {
   const [term, setTerm] = useState('');
   const [places, setPlaces] = useState<Place[]>([]);
+  const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,9 +21,15 @@ export default function LocationSearch({ onPlaceClick }: LocationSearchProps) {
    // Use useEffect to call onPlaceClick with the first place whenever places changes
   useEffect(() => {
     if (places.length > 0) {
-      onPlaceClick(places[0]);
+      setSelectedPlace(places[0]);
     }
-  }, [places, onPlaceClick]); 
+  }, [places]); 
+
+  useEffect(() => {
+    if (selectedPlace) {
+      onPlaceClick(selectedPlace);
+    }
+  }, [selectedPlace, onPlaceClick]);
 
   return (
    <div>
@@ -44,7 +51,7 @@ export default function LocationSearch({ onPlaceClick }: LocationSearchProps) {
           <p className="text-sm">{place.name}</p>
           <button
             className="bg-blue-500 text-xs text-white font-bold py-1 px-1 rounded"
-            onClick={() => onPlaceClick(place)}
+            onClick={() => setSelectedPlace(place)}
           > 
           Go 
           </button>
